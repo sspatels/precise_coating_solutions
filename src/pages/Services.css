@@ -1,0 +1,10 @@
+/* Services page opens directly with the heading + slider */
+.section.services-slider {
+  padding-block: clamp(20px, 2.5vw, 32px) clamp(28px, 3.5vw, 48px);
+}
+
+.services-slider__title {
+  margin-bottom: clamp(8px, 1.2vw, 16px);
+  text-align: center;
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+}

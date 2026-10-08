@@ -1,0 +1,46 @@
+.watermark {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 3px 6px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px -6px rgba(11, 31, 51, 0.5);
+  pointer-events: none;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+.watermark img {
+  width: auto;
+  aspect-ratio: 1.72 / 1;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.watermark--sm img {
+  height: 34px;
+}
+
+.watermark--lg {
+  top: 16px;
+  left: 16px;
+  padding: 4px 8px;
+}
+
+.watermark--lg img {
+  height: 48px;
+}
+
+@media (max-width: 600px) {
+  .watermark--sm img {
+    height: 28px;
+  }
+  .watermark--lg img {
+    height: 36px;
+  }
+}

@@ -1,0 +1,18 @@
+/* Content that slides up over the pinned About banner */
+.about-cover {
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  box-shadow: 0 -12px 28px -16px rgba(11, 31, 51, 0.35);
+}
+
+/* Scroll space where the banner text scrolls away before the content covers the photo */
+.about-runway {
+  height: 60vh;
+}
+
+@media (max-height: 500px) {
+  .about-runway {
+    display: none;
+  }
+}

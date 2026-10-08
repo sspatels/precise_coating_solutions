@@ -1,0 +1,4 @@
+/* Gallery opens directly with the tabs – smaller top spacing */
+.section.gallery-page {
+  padding-top: clamp(16px, 2vw, 24px);
+}

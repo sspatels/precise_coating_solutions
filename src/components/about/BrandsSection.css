@@ -1,0 +1,159 @@
+.brands__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.brands__grid > li {
+  height: 100%;
+}
+
+.brand-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  height: 100%;
+  padding: 26px 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+/* Orange bar grows along the bottom on hover */
+.brand-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: var(--orange-gradient);
+  transition: width 0.45s var(--ease);
+}
+
+.brand-card:hover {
+  border-color: rgba(249, 147, 31, 0.5);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.brand-card:hover::after {
+  width: 100%;
+}
+
+/* Light sweep across the card on hover */
+.brand-card__shine {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.brand-card:hover .brand-card__shine {
+  animation: brand-shine 0.9s var(--ease);
+}
+
+@keyframes brand-shine {
+  to {
+    left: 130%;
+  }
+}
+
+.brand-card__logo-wrap {
+  position: relative;
+  width: 100%;
+  height: clamp(80px, 8vw, 110px);
+  overflow: hidden;
+}
+
+.brand-card__logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  animation: brand-float 5s ease-in-out infinite;
+  transition: transform 0.4s var(--ease);
+}
+
+/* Each logo floats slightly out of step with its neighbours */
+.brands__grid > li:nth-child(2n) .brand-card__logo {
+  animation-delay: -1.2s;
+}
+
+.brands__grid > li:nth-child(3n) .brand-card__logo {
+  animation-delay: -2.4s;
+}
+
+@keyframes brand-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.brand-card:hover .brand-card__logo {
+  animation-play-state: paused;
+  transform: scale(1.08);
+}
+
+.brand-card__wordmark {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.brand-card__name {
+  padding-top: 12px;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--navy);
+  transition: color 0.3s;
+}
+
+.brand-card:hover .brand-card__name {
+  color: var(--orange);
+}
+
+@media (max-width: 1024px) {
+  .brands__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .brands__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .brand-card {
+    padding: 18px 12px 14px;
+    gap: 10px;
+  }
+  .brand-card__name {
+    font-size: 0.85rem;
+  }
+}

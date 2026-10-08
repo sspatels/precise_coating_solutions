@@ -1,0 +1,17 @@
+/* Contact page opens directly with the contact information */
+.section.contact-page {
+  padding-top: clamp(24px, 3vw, 40px);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}

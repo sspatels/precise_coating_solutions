@@ -1,0 +1,35 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+}
+
+.logo__img {
+  width: auto;
+  object-fit: cover;
+}
+
+/* Header: crop the small tagline at the bottom so the mark + name stay readable */
+.logo--header .logo__img {
+  height: 68px;
+  object-fit: contain;
+  transition: height 0.3s var(--ease);
+}
+
+.logo--footer {
+  background: var(--white);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+}
+
+.logo--footer .logo__img {
+  height: 120px;
+  aspect-ratio: 1.5 / 1;
+}
+
+@media (max-width: 600px) {
+  .logo--header .logo__img {
+    height: 54px;
+  }
+}

@@ -1,0 +1,33 @@
+/* 6-column track: first row 3 cards, second row 2 centred cards */
+.about-why__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.about-why__grid > * {
+  grid-column: span 2;
+}
+
+.about-why__grid > :nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+@media (max-width: 1024px) {
+  .about-why__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .about-why__grid > *,
+  .about-why__grid > :nth-child(4) {
+    grid-column: auto;
+  }
+  .about-why__grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-why__grid {
+    grid-template-columns: 1fr;
+  }
+}

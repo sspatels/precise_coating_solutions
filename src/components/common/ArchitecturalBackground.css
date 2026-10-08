@@ -1,0 +1,146 @@
+.arch-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  --arch-color: #6f8aa3;
+}
+
+.arch-bg--dark {
+  --arch-color: #9fb7cf;
+}
+
+.arch-bg--white {
+  --arch-color: #ffffff;
+}
+
+.arch-bg__drawing {
+  position: absolute;
+  inset: -16px 0;
+}
+
+.arch-bg__svg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 900px; /* = TILE_HEIGHT in ArchitecturalBackground.jsx */
+  opacity: var(--arch-opacity);
+}
+
+/* Mirror for variety: 'left' sections and every second tile */
+.arch-bg--left .arch-bg__svg,
+.arch-bg__svg--flip {
+  transform: scaleX(-1);
+}
+
+.arch-bg--left .arch-bg__svg--flip {
+  transform: none;
+}
+
+.arch-line {
+  stroke: var(--arch-color);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.arch-line--thin {
+  stroke-width: 1;
+}
+
+.arch-line--dim {
+  stroke-width: 1;
+  stroke-dasharray: 6 7;
+}
+
+/* Orange scanning line (hidden until animated) */
+.arch-bg__scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(249, 147, 31, 0.55), transparent);
+  opacity: 0;
+}
+
+/* ==========================================================
+   Animation
+   ========================================================== */
+
+/* 1. Lines hidden until the section scrolls into view (pathLength = 1) */
+.arch-bg--animated .arch-line:not(.arch-line--dim) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+/* 2. Draw the lines in – thin detail lines follow the main outlines */
+.arch-bg--animated.is-visible .arch-line:not(.arch-line--dim) {
+  animation: arch-draw 3.5s var(--ease) forwards;
+}
+
+.arch-bg--animated.is-visible .arch-line--thin {
+  animation-duration: 4.5s;
+  animation-delay: 0.9s;
+}
+
+/* 3. Continuous motion */
+.arch-bg--animated.is-visible .arch-line--dim {
+  animation: arch-dash 5s linear infinite;
+}
+
+.arch-bg--animated.is-visible .arch-bg__drawing {
+  animation: arch-float 16s ease-in-out infinite;
+}
+
+.arch-bg--animated.is-visible .arch-bg__scan {
+  animation: arch-scan 9s linear 1s infinite;
+}
+
+@keyframes arch-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes arch-dash {
+  to {
+    stroke-dashoffset: -130;
+  }
+}
+
+@keyframes arch-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-10px, -12px);
+  }
+}
+
+@keyframes arch-scan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-bg--animated .arch-line:not(.arch-line--dim) {
+    stroke-dashoffset: 0;
+  }
+}

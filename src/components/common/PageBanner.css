@@ -1,0 +1,70 @@
+.page-banner {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(64px, 10vw, 120px) clamp(56px, 8vw, 96px);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-banner__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.page-banner__inner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 960px;
+}
+
+.page-banner__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.page-banner__breadcrumb a:hover {
+  color: var(--orange);
+}
+
+.page-banner__breadcrumb span {
+  color: var(--navy);
+}
+
+.page-banner__title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.page-banner__subtitle {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 780px;
+}
+
+/* Orange geometric accents */
+.page-banner__shape {
+  position: absolute;
+  pointer-events: none;
+}
+
+.page-banner__shape--a {
+  top: 0;
+  right: 0;
+  width: clamp(90px, 14vw, 180px);
+  aspect-ratio: 1;
+  background: var(--orange-gradient);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  opacity: 0.95;
+}
+
+.page-banner__shape--b {
+  bottom: 28px;
+  left: 0;
+  width: clamp(60px, 10vw, 120px);
+  height: 4px;
+  background: var(--orange-gradient);
+}

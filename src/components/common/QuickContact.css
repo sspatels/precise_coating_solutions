@@ -1,0 +1,250 @@
+.quick-contact__founder {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin: -16px auto clamp(32px, 4vw, 44px);
+  padding: 10px 22px 10px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.quick-contact__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--orange-gradient);
+  color: var(--white);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.quick-contact__founder strong {
+  display: block;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.quick-contact__founder small {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.quick-contact__founder small svg {
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+.quick-contact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.5vw, 28px);
+}
+
+.quick-contact__grid > li {
+  height: 100%;
+}
+
+/* ---------- Card ---------- */
+.qc-card {
+  --accent: var(--orange);
+  --accent-soft: var(--orange-light);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  padding: clamp(28px, 3vw, 40px) 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--ease),
+    box-shadow 0.4s var(--ease),
+    border-color 0.4s var(--ease);
+}
+
+.qc-card--whatsapp {
+  --accent: #25d366;
+  --accent-soft: #e9fbf0;
+}
+
+.qc-card--email {
+  --accent: var(--navy-deep);
+  --accent-soft: #e8edf3;
+}
+
+/* Accent fill rises from the bottom on hover */
+.qc-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--accent);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease);
+}
+
+.qc-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.qc-card:hover,
+.qc-card:focus-visible {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.qc-card:hover::before,
+.qc-card:focus-visible::before {
+  transform: translateY(0);
+}
+
+.qc-card__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+  transition:
+    background-color 0.4s var(--ease),
+    color 0.4s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+.qc-card__ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: qc-ripple 2.6s ease-out infinite;
+}
+
+.qc-card__ripple--late {
+  animation-delay: 1.3s;
+}
+
+@keyframes qc-ripple {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.qc-card--call .qc-card__icon svg {
+  animation: float-ring 2.8s ease-in-out infinite;
+}
+
+.qc-card:hover .qc-card__icon {
+  background: var(--white);
+  color: var(--accent);
+  transform: scale(1.06);
+}
+
+.qc-card:hover .qc-card__ripple {
+  border-color: var(--white);
+}
+
+.qc-card__label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color 0.4s;
+}
+
+.qc-card--email .qc-card__label {
+  color: var(--orange);
+}
+
+.qc-card__value {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 800;
+  color: var(--navy);
+  overflow-wrap: anywhere;
+  transition: color 0.4s;
+}
+
+/* Long email address: slightly smaller so it stays on one line */
+.qc-card--email .qc-card__value {
+  font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+}
+
+.qc-card__note {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  transition: color 0.4s;
+}
+
+.qc-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--navy);
+  font-size: 0.92rem;
+  font-weight: 800;
+  transition:
+    background-color 0.4s,
+    color 0.4s;
+}
+
+.qc-card__action svg {
+  transition: transform 0.3s var(--ease);
+}
+
+.qc-card:hover .qc-card__label,
+.qc-card:hover .qc-card__value,
+.qc-card:hover .qc-card__note {
+  color: var(--white);
+}
+
+.qc-card:hover .qc-card__action {
+  background: var(--white);
+  color: var(--navy);
+}
+
+.qc-card:hover .qc-card__action svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .quick-contact__grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .quick-contact__founder {
+    border-radius: var(--radius);
+  }
+}

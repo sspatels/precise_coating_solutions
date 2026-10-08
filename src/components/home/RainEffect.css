@@ -1,0 +1,109 @@
+.rain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Soft rain haze over the photo */
+.rain__mist {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(160, 185, 210, 0.16) 0%, rgba(160, 185, 210, 0.04) 55%, rgba(200, 215, 230, 0.14) 100%);
+  animation: rain-mist 7s ease-in-out infinite alternate;
+}
+
+@keyframes rain-mist {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Each layer is tilted slightly for a wind angle */
+.rain__layer {
+  position: absolute;
+  inset: -10% -10%;
+  transform: rotate(10deg);
+}
+
+.rain__layer--near {
+  transform: rotate(13deg);
+}
+
+.rain__drop {
+  position: absolute;
+  top: -140px;
+  width: 1.6px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(235, 245, 255, 1) 100%);
+  animation-name: rain-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.rain__layer--near .rain__drop {
+  width: 2.4px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, #ffffff 100%);
+  filter: drop-shadow(0 0 2px rgba(200, 225, 255, 0.9));
+}
+
+@keyframes rain-fall {
+  to {
+    transform: translateY(calc(100vh + 320px));
+  }
+}
+
+/* Splashes along the ground */
+.rain__splashes {
+  position: absolute;
+  inset: 0;
+}
+
+.rain__splash {
+  position: absolute;
+  width: 14px;
+  height: 4px;
+  border: 1.5px solid rgba(225, 238, 255, 0.85);
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0;
+  opacity: 0;
+  transform: scale(0.2);
+  animation-name: rain-splash;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rain-splash {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4, 1.8);
+  }
+}
+
+/* Phones: fewer drops for smooth performance */
+@media (max-width: 768px) {
+  .rain__layer--far .rain__drop:nth-child(2n),
+  .rain__layer--near .rain__drop:nth-child(3n),
+  .rain__splash:nth-child(2n) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rain {
+    display: none;
+  }
+}
