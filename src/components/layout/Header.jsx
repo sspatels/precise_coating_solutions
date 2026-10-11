@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Mail, Menu, Phone, X } from 'lucide-react';
-import Logo from '../common/Logo';
+import { Home, Info, LayoutGrid, Layers, Mail, Menu, Phone, X } from 'lucide-react';
 import Button from '../common/Button';
 import { headerCta, navigationLinks } from '../../data/navigationData';
 import { companyData } from '../../data/companyData';
 import { WhatsAppIcon } from '../common/ContactIcon';
 import './Header.css';
+
+/* Small icon shown beside each nav label in the floating pill */
+const navIcons = {
+  home: Home,
+  services: Layers,
+  gallery: LayoutGrid,
+  about: Info,
+  contact: Phone,
+};
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,23 +47,25 @@ function Header() {
 
   return (
     <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
-      <div className="container header__inner">
-        <Logo variant="header" />
-
+      <div className="header__inner">
         <nav className="header__nav" aria-label="Main navigation">
           <ul className="header__links">
-            {navigationLinks.map((link) => (
-              <li key={link.id}>
-                <NavLink to={link.path} end={link.path === '/'} className="header__link">
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
+            {navigationLinks.map((link) => {
+              const Icon = navIcons[link.id];
+              return (
+                <li key={link.id}>
+                  <NavLink to={link.path} end={link.path === '/'} className="header__link">
+                    {Icon && <Icon size={16} aria-hidden="true" className="header__link-icon" />}
+                    <span>{link.label}</span>
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
         <div className="header__actions">
-          <Button to={headerCta.path} variant="dark" className="header__cta">
+          <Button to={headerCta.path} variant="primary" size="md" className="header__cta">
             {headerCta.label}
           </Button>
           <button

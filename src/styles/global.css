@@ -11,8 +11,9 @@
   --orange-gradient-footer: linear-gradient(90deg, #ffffff 0%, #fff6ec 14%, #ffd29c 34%, #fba849 58%, #f39220 80%, #e9800d 100%);
   --orange-gradient-text: linear-gradient(100deg, #ffb347 0%, #f9931f 40%, #ff7a00 100%);
   --orange-light: #fff4e8;
-  --navy: #111827;
-  --navy-deep: #0b1f33;
+  /* Charcoal dark tones (used for the navbar, hero, CTA, Vision/Mission & footer) */
+  --navy: #1f2228;
+  --navy-deep: #16181d;
   --white: #ffffff;
   --bg-light: #f7f8fa;
   --border: #e5e7eb;
@@ -140,6 +141,14 @@ ul {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
+}
+
+/* Pages without a full-bleed hero (Services, Gallery, Contact): the first
+   section runs up to the top of the screen so its background fills the area
+   behind the floating navbar; only its content is pushed down to clear it.
+   The selector outranks page-level `.section.<page>` rules so it always wins. */
+.site-main--offset > section:first-of-type {
+  padding-top: calc(var(--header-h) + clamp(12px, 2vw, 28px));
 }
 
 .section {

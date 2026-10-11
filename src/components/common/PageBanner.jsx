@@ -1,13 +1,11 @@
-import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ArchitecturalBackground from './ArchitecturalBackground';
 import './PageBanner.css';
 
 /**
- * Inner-page hero with breadcrumb, title and subtitle over the blueprint background.
+ * Inner-page hero with title and subtitle over the blueprint background.
  */
-function PageBanner({ eyebrow, title, highlight, subtitle, breadcrumb, archPosition = 'right' }) {
+function PageBanner({ eyebrow, title, highlight, subtitle, archPosition = 'right' }) {
   return (
     <section className="page-banner">
       <ArchitecturalBackground position={archPosition} opacity={0.28} />
@@ -20,11 +18,6 @@ function PageBanner({ eyebrow, title, highlight, subtitle, breadcrumb, archPosit
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <nav aria-label="Breadcrumb" className="page-banner__breadcrumb">
-            <Link to="/">Home</Link>
-            <ChevronRight size={14} aria-hidden="true" />
-            <span aria-current="page">{breadcrumb}</span>
-          </nav>
           {eyebrow && <span className="eyebrow">{eyebrow}</span>}
           <h1 className="page-banner__title">
             {title} {highlight && <span className="text-orange">{highlight}</span>}

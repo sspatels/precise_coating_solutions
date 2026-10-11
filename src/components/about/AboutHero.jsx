@@ -1,7 +1,5 @@
 import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import Button from '../common/Button';
 import { companyData } from '../../data/companyData';
 import './AboutHero.css';
@@ -63,14 +61,6 @@ function AboutHero() {
 
       <div className="container about-hero__inner">
         <motion.div className="about-hero__content" style={{ y: textY }}>
-          <div>
-            <motion.nav aria-label="Breadcrumb" className="about-hero__breadcrumb" {...fadeUp(0)}>
-              <Link to="/">Home</Link>
-              <ChevronRight size={14} aria-hidden="true" />
-              <span aria-current="page">About Us</span>
-            </motion.nav>
-          </div>
-
           <div>
             <motion.span className="eyebrow about-hero__eyebrow" {...fadeUp(0.1)}>
               About {companyData.name}

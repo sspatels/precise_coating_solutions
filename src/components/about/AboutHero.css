@@ -1,14 +1,15 @@
 .about-hero {
-  /* Pinned under the header; the following content (.about-cover) scrolls over it */
+  /* Pinned to the top; the floating navbar overlays it and the following
+     content (.about-cover) scrolls up over it */
   position: sticky;
-  top: 70px; /* compact header height */
+  top: 0;
   z-index: 0;
   overflow: hidden;
   display: flex;
   align-items: center;
-  /* Fills the screen under the header so nothing else shows while the text clears */
-  min-height: calc(100svh - 70px);
-  padding-block: clamp(56px, 7vw, 96px);
+  /* Fills the screen (image runs up behind the navbar) */
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + 24px) clamp(56px, 7vw, 96px);
   background: var(--navy-deep);
   color: var(--white);
 }
@@ -46,10 +47,10 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(11, 31, 51, 0.9) 0%,
-    rgba(11, 31, 51, 0.72) 35%,
-    rgba(11, 31, 51, 0.2) 62%,
-    rgba(11, 31, 51, 0) 80%
+    rgba(10, 11, 13, 0.92) 0%,
+    rgba(10, 11, 13, 0.74) 35%,
+    rgba(10, 11, 13, 0.22) 62%,
+    rgba(10, 11, 13, 0) 80%
   );
 }
 
@@ -133,7 +134,7 @@
 
 @media (max-width: 900px) {
   .about-hero__overlay {
-    background: linear-gradient(180deg, rgba(11, 31, 51, 0.82) 0%, rgba(11, 31, 51, 0.7) 100%);
+    background: linear-gradient(180deg, rgba(10, 11, 13, 0.84) 0%, rgba(10, 11, 13, 0.7) 100%);
   }
   .about-hero__image {
     object-position: 80% center;

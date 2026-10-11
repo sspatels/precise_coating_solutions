@@ -1,9 +1,10 @@
-/* White → orange fade (matches the navbar); dark navy text reads on both ends */
+/* Dark footer bar — bookends the white/orange content; orange accents kept */
 .footer {
   position: relative;
   overflow: hidden;
-  background: var(--orange-gradient-footer);
-  color: rgba(11, 31, 51, 0.85);
+  /* Matches the charcoal CTA section above it so they read as one dark block */
+  background: linear-gradient(180deg, var(--navy-deep) 0%, #0d0f12 100%);
+  color: rgba(255, 255, 255, 0.72);
   padding-top: clamp(32px, 4vw, 48px);
   font-size: 0.9rem;
 }
@@ -13,7 +14,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(-45deg, rgba(11, 31, 51, 0.035) 0 1px, transparent 1px 26px);
+  background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 26px);
   pointer-events: none;
 }
 
@@ -39,6 +40,9 @@
 
 .footer__logo {
   display: inline-flex;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  background: #ffffff;
   transition: transform 0.3s var(--ease);
 }
 
@@ -47,7 +51,7 @@
 }
 
 .footer__logo img {
-  height: 64px;
+  height: 56px;
   width: auto;
   object-fit: contain;
 }
@@ -55,7 +59,7 @@
 .footer__subtitle {
   font-size: 0.98rem;
   font-weight: 800;
-  color: var(--navy-deep);
+  color: var(--white);
 }
 
 .footer__meta {
@@ -66,10 +70,11 @@
 
 .footer__meta svg {
   flex-shrink: 0;
+  color: var(--orange);
 }
 
 .footer__meta strong {
-  color: var(--navy-deep);
+  color: var(--white);
   font-weight: 800;
 }
 
@@ -79,7 +84,7 @@
   margin-bottom: 14px;
   padding-bottom: 8px;
   font-size: 1rem;
-  color: var(--navy-deep);
+  color: var(--white);
 }
 
 .footer__heading::after {
@@ -108,14 +113,18 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: rgba(11, 31, 51, 0.85);
+  color: rgba(255, 255, 255, 0.72);
   transition:
     color 0.2s,
     transform 0.25s var(--ease);
 }
 
+.footer__link svg {
+  color: var(--orange);
+}
+
 .footer__link:hover {
-  color: var(--navy-deep);
+  color: var(--orange);
   text-decoration: underline;
   text-underline-offset: 3px;
   transform: translateX(4px);
@@ -136,6 +145,7 @@
 
 .footer__contact svg {
   flex-shrink: 0;
+  color: var(--orange);
 }
 
 .footer__contact a,
@@ -145,7 +155,7 @@
 }
 
 .footer__contact a:hover {
-  color: var(--navy-deep);
+  color: var(--orange);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -155,10 +165,11 @@
   display: inline-block;
   padding: 5px 10px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--navy-deep);
+  color: var(--white);
 }
 
 .footer__social {
@@ -172,21 +183,26 @@
   width: 34px;
   height: 34px;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(11, 31, 51, 0.25);
-  transition: background-color 0.25s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    border-color 0.25s;
 }
 
 .footer__social a:hover {
-  color: var(--white);
-  background: var(--navy-deep);
+  color: #ffffff;
+  background: var(--orange-gradient);
+  border-color: transparent;
 }
 
 /* ---------- Bottom bar ---------- */
 .footer__bottom {
   position: relative;
   z-index: 1;
-  background: rgba(11, 31, 51, 0.06);
-  border-top: 1px solid rgba(11, 31, 51, 0.12);
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-block: 12px;
   font-size: 0.82rem;
 }
@@ -203,7 +219,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--navy-deep);
+  color: var(--orange);
 }
 
 @media (max-width: 1024px) {

@@ -10,6 +10,11 @@ import FloatingContact from '../common/FloatingContact';
  */
 function Layout() {
   const { pathname } = useLocation();
+  // The floating navbar is fixed. Pages that open with a full-bleed hero image
+  // (Home, About) let the image run up behind the navbar; the rest get tight
+  // top clearance so their first section sits just below the navbar.
+  const heroRoutes = ['/', '/about'];
+  const hasHero = heroRoutes.includes(pathname);
 
   return (
     <>
@@ -19,6 +24,7 @@ function Layout() {
       <Header />
       <motion.main
         id="main"
+        className={`site-main ${hasHero ? '' : 'site-main--offset'}`}
         key={pathname}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
