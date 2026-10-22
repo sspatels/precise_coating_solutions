@@ -113,6 +113,24 @@
   color: var(--white);
 }
 
+/* Mobile-only "Back to previous page" button (shown where the desktop nav is hidden) */
+.header__back {
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.header__back:hover,
+.header__back:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+}
+
 /* Mobile drawer */
 .mobile-menu__backdrop {
   position: fixed;
@@ -199,12 +217,13 @@
   .header__nav {
     display: none;
   }
-  .header__toggle {
+  .header__toggle,
+  .header__back {
     display: grid;
   }
   .header__inner {
     gap: 8px;
-    padding-left: 14px;
+    padding-left: 7px;
   }
 }
 

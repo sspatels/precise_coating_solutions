@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Home, Info, LayoutGrid, Layers, Mail, Menu, Phone, X } from 'lucide-react';
+import { ArrowLeft, Home, Info, LayoutGrid, Layers, Mail, Menu, Phone, X } from 'lucide-react';
 import Button from '../common/Button';
 import { headerCta, navigationLinks } from '../../data/navigationData';
 import { companyData } from '../../data/companyData';
@@ -20,6 +20,13 @@ const navIcons = {
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const isHome = pathname === '/';
+  // Mobile "Back" button: return to the previous page, or Home if there is no history.
+  const goBack = () => {
+    if (window.history.length > 1) navigate(-1);
+    else navigate('/');
+  };
   // The menu stays open only for the route it was opened on, so navigating closes it automatically.
   const [menuPath, setMenuPath] = useState(null);
   const isMenuOpen = menuPath === pathname;
@@ -48,6 +55,16 @@ function Header() {
   return (
     <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
       <div className="header__inner">
+        {!isHome && (
+          <button
+            type="button"
+            className="header__back"
+            aria-label="Go back to previous page"
+            onClick={goBack}
+          >
+            <ArrowLeft size={22} />
+          </button>
+        )}
         <nav className="header__nav" aria-label="Main navigation">
           <ul className="header__links">
             {navigationLinks.map((link) => {
