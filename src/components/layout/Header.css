@@ -120,6 +120,9 @@
   background: rgba(3, 6, 9, 0.6);
   backdrop-filter: blur(2px);
   z-index: 90;
+  /* The parent .header has pointer-events:none; re-enable it here so the
+     backdrop and the drawer below are actually clickable on mobile. */
+  pointer-events: auto;
 }
 
 .mobile-menu {
@@ -128,6 +131,7 @@
   left: 14px;
   right: 14px;
   z-index: 95;
+  pointer-events: auto;
   max-height: calc(100dvh - 100px);
   overflow-y: auto;
   padding: 16px 16px 24px;
