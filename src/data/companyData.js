@@ -7,7 +7,7 @@ import { image } from './media';
 const PHONE_DIGITS = '9284901078'; // 10-digit mobile number
 const COUNTRY_CODE = '91';
 const EMAIL = 'precisecoatingsolutions@gmail.com';
-const WEBSITE = 'www.precisecoatingsolutions.in';
+const WEBSITE = 'precisecoatingsolution.in';
 const WHATSAPP_MESSAGE = 'Hello Precise Coating Solutions, I would like to enquire about your waterproofing / coating services.';
 
 /**
